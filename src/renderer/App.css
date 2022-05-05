@@ -2,44 +2,128 @@
  * @NOTE: Prepend a `~` to css file paths that are in your node_modules
  *        See https://github.com/webpack-contrib/sass-loader#imports
  */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,400&display=swap');
+
 body {
+  font-family: 'Roboto', sans-serif;
   position: relative;
   color: white;
   height: 100vh;
-  background: linear-gradient(
-    200.96deg,
-    #fedc2a -29.09%,
-    #dd5789 51.77%,
-    #7a2c9e 129.35%
-  );
-  font-family: sans-serif;
+  background-color: var(--color-bg);
   overflow-y: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+:root {
+  --color-text: #fff;
+  --color-text-secondary: #919da3;
+  --color-white: #fff;
+  --color-purple: #6f0dff;
+  --color-grey: #919da3;
+  --color-grey-dark: #45484a;
+  --color-bg: #303538;
+  --color-red: #ff1f39;
+  --color-dark: #202426;
+  --color-darker: #1c1f21;
+  --color-darkest: #262a2c;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-upload {
+  background-color: var(--color-grey-dark);
+  width: 30vw;
+  min-height: 10vh;
+  padding: 1.2rem;
+  border: 1px dashed var(--color-purple);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease-in-out;
+  text-align: center;
+  cursor: pointer;
+}
+.container-upload p {
+  margin: 0;
+}
+.container-upload:hover {
+  background-color: var(--color-purple);
+}
+
+ul {
+  padding: 0.3rem;
+  width: 100%;
+  margin: 0;
+}
+hr {
+  width: 100%;
+  border: 1px solid var(--color-purple);
+  margin: 1rem 0;
+}
+.video-list {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.video-list li {
+  font-size: 0.9rem;
+  font-weight: 300;
+  margin: 0.2rem 0;
+  display: flex;
+  align-items: center;
+}
+.video-list video {
+  width: 30vw;
+  height: 30vw;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 0 0 1rem 0;
+}
+p {
+  font-size: 0.8rem;
+  margin: 0 0 1rem 0;
+}
 
 button {
-  background-color: white;
-  padding: 10px 20px;
-  border-radius: 10px;
+  background: var(--color-purple);
+  color: var(--color-white);
   border: none;
-  appearance: none;
-  font-size: 1.3rem;
-  box-shadow: 0px 8px 28px -6px rgba(24, 39, 75, 0.12),
-    0px 18px 88px -4px rgba(24, 39, 75, 0.14);
-  transition: all ease-in 0.1s;
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 300;
+  border-radius: 0.2rem;
   cursor: pointer;
-  opacity: 0.9;
+  transition: all 0.3s ease-in-out;
+  margin: 0.5rem 0;
 }
-
+.delete-button {
+  background: transparent;
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  z-index: 1;
+}
+.disabled {
+  background: var(--color-grey);
+  cursor: not-allowed;
+}
 button:hover {
-  transform: scale(1.05);
-  opacity: 1;
+  opacity: 0.8;
 }
-
 li {
   list-style: none;
+  position: relative;
 }
 
 a {
@@ -52,11 +136,4 @@ a {
 a:hover {
   opacity: 1;
   text-decoration: none;
-}
-
-.Hello {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px 0;
 }

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint global-require: off, no-console: off, promise/always-return: off */
 
 /**
@@ -8,6 +9,8 @@
  * When running `npm run build` or `npm run build:main`, this file is compiled to
  * `./src/main.js` using webpack. This gives us some performance wins.
  */
+// @ts-ignore
+import ffbinaries from 'ffbinaries';
 import path from 'path';
 import { app, BrowserWindow, shell, ipcMain } from 'electron';
 import { autoUpdater } from 'electron-updater';
@@ -15,11 +18,23 @@ import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 
+const rootPath = path.join(__dirname, '../../');
+
+const dest = `${rootPath}binaries`;
+
 export default class AppUpdater {
   constructor() {
     log.transports.file.level = 'info';
     autoUpdater.logger = log;
     autoUpdater.checkForUpdatesAndNotify();
+
+    ffbinaries.downloadBinaries(
+      ['ffmpeg'],
+      { platform: 'osx-64', quiet: false, destination: dest },
+      function () {
+        console.log(`Downloaded ffmpeg binaries for macos-64 to ${dest}.`);
+      }
+    );
   }
 }
 
